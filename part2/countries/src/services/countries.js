@@ -13,21 +13,12 @@ const getByName = (name) => {
 
 const getWeather = (country) => {
   const OWM_KEY = import.meta.env.VITE_OWM_KEY;
-  console.log("getting weather");
+
   if (OWM_KEY === undefined) {
-    console.log("returns null");
     return null;
   }
-  console.log("configuring promise for weather");
+
   const [lat, lon] = country.latlng;
-  //   return new Promise();
-  //   return new Promise((resolve, reject) => {
-  //     resolve({
-  //       main: {
-  //         temp: 25,
-  //       },
-  //     });
-  //   });
   return axios
     .get(`${owmBaseUrl}units=metric&lat=${lat}&lon=${lon}&appid=${OWM_KEY}`)
     .then((r) => r.data);
